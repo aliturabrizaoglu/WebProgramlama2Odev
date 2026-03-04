@@ -1,0 +1,443 @@
+/* =========================================
+   1. CSS DEĞİŞKENLERİ (Variables)
+   ========================================= */
+:root {
+  /* Renk Paleti - Standart, düz renkler */
+  --primary: #0056b3;
+  --primary-hover: #004085;
+  --bg: #f5f5f5;
+  --bg-card: #ffffff;
+  --text: #333333;
+  --text-muted: #666666;
+  --muted: #e0e0e0;
+  --danger: #d9534f;
+
+  /* Stil ve Ölçüler */
+  --radius: 8px;
+  /* Daha normal, keskin köşeler */
+  --radius-sm: 4px;
+  --radius-full: 9999px;
+  --transition: all 0.2s ease;
+
+  /* Gölgeler - Basit ve düz */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   2. YENİDEN BAŞLATMA VE TABAN (Reset & Base)
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  /* Google Fonts yerine standart font */
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Kapsayıcı (Container) */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =========================================
+   3. ÜST BAR (Header & Nav) - FLEXBOX
+   ========================================= */
+.header {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  /* Saydam/Cam efekti kaldırıldı */
+  border-bottom: 1px solid var(--muted);
+  z-index: 1000;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* Navigasyon (Flex) */
+.nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: normal;
+  font-size: 16px;
+  padding: 5px 0;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  color: var(--primary);
+}
+
+/* Aktif link durumu */
+.nav-link.active {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* :focus-visible (Erişilebilirlik) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* =========================================
+   4. HERO ALANI
+   ========================================= */
+.hero {
+  background-color: #e9ecef;
+  /* Degrade yerine düz açık gri */
+  padding: 60px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--muted);
+}
+
+.hero-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: var(--text);
+}
+
+.hero-desc {
+  font-size: 18px;
+  color: var(--text-muted);
+  margin-bottom: 25px;
+}
+
+/* Buton Stilleri */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: var(--radius-sm);
+  /* tam yuvarlak yerine hafif köşeli */
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+.btn-outline {
+  background-color: #fff;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background-color: var(--bg);
+}
+
+/* =========================================
+   5. FİLTRELER (Flexbox)
+   ========================================= */
+.filters {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  /* Alana sığmazsa alta inmesi için */
+  gap: 15px;
+}
+
+.search-box {
+  flex-grow: 1;
+  max-width: 300px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 15px;
+  font-family: inherit;
+  border: 1px solid #ccc;
+  border-radius: var(--radius-sm);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.chips {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  padding: 5px 15px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-card);
+  color: var(--text);
+  border: 1px solid #ccc;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.chip:hover {
+  background-color: var(--bg);
+}
+
+.chip.active {
+  background-color: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* =========================================
+   6. ÜRÜN KARTLARI (Grid Layout)
+   ========================================= */
+.products {
+  flex-grow: 1;
+  margin-bottom: 40px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Kart Tasarımı */
+.card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--muted);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+  /* Transform kaldırıldı, sadece gölge biraz artıyor */
+}
+
+/* Sahte Görsel Alanı */
+.card-img-placeholder {
+  height: 180px;
+  background-color: #dddddd;
+  /* Düz gri arka plan, degrade yok */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--muted);
+}
+
+.img-text {
+  background-color: var(--danger);
+  color: #fff;
+  padding: 3px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: var(--radius-sm);
+}
+
+/* Kart İçeriği */
+.card-content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: var(--text);
+}
+
+.card-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+/* Alt Kısım (Flex) */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--muted);
+  padding-top: 10px;
+  margin-top: auto;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.card-footer .btn {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+/* =========================================
+   7. FOOTER (Flexbox)
+   ========================================= */
+.footer {
+  background-color: #eeeeee;
+  border-top: 1px solid #ddd;
+  padding: 20px 0;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.copyright {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+  color: var(--text);
+}
+
+/* =========================================
+   8. RESPONSİVE TASARIM (Media Queries)
+   ========================================= */
+
+/* Tablet ve Küçük Ekranlar (600px - 1023px) */
+@media (max-width: 1023px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobil Ekranlar (< 600px) */
+@media (max-width: 599px) {
+  .header-container {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .hero {
+    padding: 30px 15px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box {
+    max-width: 100%;
+  }
+
+  .chips {
+    justify-content: flex-start;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+    /* Tek sütun */
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+  }
+}
